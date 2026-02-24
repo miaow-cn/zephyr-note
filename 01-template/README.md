@@ -21,6 +21,23 @@ This is a template for zephyr app of *workspace type*.
 - **main.c**: Source code
 - **CmakeLists.txt**: For build
 
+## Configure
+
+In `01-template` directory,
+```bash
+west build -b fk743m5_xih6 -t menuconfig
+```
+
+For reconfigure, both 2 commands are :
+```bash
+west build -t menuconfig
+```
+or
+```bash
+cd build
+ninja menuconfig
+```
+
 ## Build
 
 In `01-template` directory,
@@ -32,6 +49,8 @@ or
 cmake -Bbuild -DAPPLICATION_CONFIG_DIR=/path/to/app_cfg .
 cmake --build build
 ```
+
+> If the board is given or set when configure, we can skip the `-b` option
 
 executable is:
 - build/zephyr/zephyr.elf
