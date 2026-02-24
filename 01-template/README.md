@@ -3,6 +3,7 @@ This is a template for zephyr app of *workspace type*.
 ## Files
 
 ```bash
+01-template
 ├── app.overlay
 ├── CMakeLists.txt
 ├── debug.conf
