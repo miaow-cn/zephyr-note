@@ -23,6 +23,9 @@ This is a template for zephyr app of *workspace type*.
 
 ## Configure
 
+> Configure step is optional. You can reconfigure anytime you want.
+> After (re)configuration, a build is required.
+
 In `01-template` directory,
 ```bash
 west build -b fk743m5_xih6 -t menuconfig
