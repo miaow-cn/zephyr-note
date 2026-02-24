@@ -192,6 +192,8 @@ ninja pristine
 
 ## Flash
 
+> If not built, flash can triggers a build
+
 ```bash
 west flash
 ```
