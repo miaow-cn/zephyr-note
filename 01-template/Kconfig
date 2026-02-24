@@ -12,9 +12,11 @@ mainmenu "01-template"
 # path relative to the Zephyr root).
 source "Kconfig.zephyr"
 
-config LOG
-        bool "Enable logging messages"
-        default n
-        depends on PRINTK
-        help
-                Set to y to output logging messages to the console.
+menu "My Application Settings"
+config MY_HELLO_WORLD
+	bool "Enable print my messages"
+	default n
+	depends on PRINTK
+	help
+		Set to y to output "Hello world\n" to the console.
+endmenu

@@ -3,9 +3,10 @@ This is a template for zephyr app of *workspace type*.
 ## Files
 
 ```bash
-01-template
 ├── app.overlay
 ├── CMakeLists.txt
+├── debug.conf
+├── Kconfig
 ├── prj.conf
 ├── README.md
 ├── src
@@ -16,6 +17,7 @@ This is a template for zephyr app of *workspace type*.
 - **app.overlay**: Device tree overlay that specifies application-specfic changes applied to the base devicetree for the board. The build system looks for `app.overlay` by default.
 - **prj.conf**: application specfic Kconfig. The build system looks for `prj.conf` by default.
 - **VERSION**: Version infomation fields to manage application lifecycle and automate providing application version for signing images.
+- **Kconfig**: If app has its own kernel configuration options, create a Kconfig file in the same directory as the app's `CMakeLists.txt`
 - **main.c**: Source code
 - **CmakeLists.txt**: For build
 
@@ -142,6 +144,10 @@ Part of the variables can be supplied to the build system:
 - **FILE_SUFFIX**
 
   Optional suffix for filenames that will be added to Kconfig fragments and devicetree overlays.
+
+- **KCONFIG_ROOT**
+
+  The `Kconfig` file is automatically detected when placed in the app directory, but it is also possible for it to be found elsewhere if the CMake variable `KCONFIG_ROOT` is set with an absolute path.
 
 ## Clean
 Preserve `.config` file:

@@ -42,6 +42,9 @@ int main(void)
 
 		led_state = !led_state;
 		printf("LED state: %s\n", led_state ? "ON" : "OFF");
+#if CONFIG_MY_HELLO_WORLD
+		printf("Hello world\n");
+#endif
 		k_msleep(SLEEP_TIME_MS);
 	}
 	return 0;
