@@ -1,0 +1,43 @@
+description: My custom device
+compatible: "miaow,my-device"
+miaow-cells:
+  - c1
+  - c2
+
+include: [base.yaml]
+
+properties:
+  bbb:
+    type: uint8-array
+    description: My custom byte array property
+    required: false
+
+  ccc:
+    type: string-array
+    description: My custom string array property
+    required: false
+
+  clock-frequency:
+    type: int
+    description: Clock frequency for the device
+    required: false
+  
+  phandle1:
+    type: phandle
+    description: A phandle property pointing to another node
+    required: false
+  
+  phandle2:
+    type: phandles
+    description: An array of phandles pointing to other nodes
+    required: false
+  
+  miaows:
+    type: phandle-array
+    description: An array of phandles pointing to other nodes
+    required: false
+  
+  miaow-names:
+    type: string-array
+    description: An array of named phandles pointing to other nodes
+    required: false

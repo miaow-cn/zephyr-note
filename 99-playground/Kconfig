@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
 
-mainmenu "02-module"
+mainmenu "01-template"
 
 # Your application configuration options go here
 
@@ -12,16 +12,6 @@ mainmenu "02-module"
 # path relative to the Zephyr root).
 source "Kconfig.zephyr"
 
-menuconfig MY_LOG
-	bool "Use logging service in 02-module"
-	default y
-	depends on LOG
+menu "My Application Settings"
 
-if MY_LOG
-
-# for logging
-module = 02_MODULE
-module-str = 02-module
-source "subsys/logging/Kconfig.template.log_config"
-
-endif # MY_LOG
+endmenu

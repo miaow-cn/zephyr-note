@@ -1,0 +1,44 @@
+/ {
+	aliases {
+		my-device = &device1;
+	};
+
+	soc {
+		device0: device@12340000 {
+			compatible = "miaow,my-device";
+			#miaow-cells = <2>;
+			reg = <0x12340000 0x04>;
+		};
+
+		device2: device@12340004 {
+			compatible = "miaow,my-device";
+			#miaow-cells = <2>;
+			reg = <0x12340004 0x04>;
+		};
+
+		device1: device@abcd1234 {
+			#address-cells = <1>;
+    			#size-cells = <1>;
+			#miaow-cells = <2>;
+
+			compatible = "miaow,my-device";
+			bbb = [12 34 56 aa bb];
+			ccc = "foo", "bar";
+			
+                        label = "DEV1";
+			reg = <0xabcd1234 0x04>, <0xcedf5678 0x04>;
+			status = "okay";
+			clock-frequency = <100000>;
+
+			phandle1 = <&device0>;
+			phandle2 = <&device0 &device2>;
+			miaows = <&device0 11 22>, <&device2 22 33>;
+			miaow-names = "first", "second";
+			
+			subdevice1: subdevice@abcd1238 {
+				#phandle-miaow-cells = <2>;
+				reg = <0xabcd1238 0x04>;
+			};
+		};
+	};
+};

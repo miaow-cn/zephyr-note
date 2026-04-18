@@ -4,12 +4,20 @@ cmake_minimum_required(VERSION 3.20.0)
 set(BOARD fk743m5_xih6)
 set(BOARD_FLASH_RUNNER jlink)
 set(BOARD_DEBUG_RUNNER jlink)
-set_property(GLOBAL APPEND PROPERTY BOARD_RUNNER_ARGS_EXPLICIT_jlink "-O=-ip 192.168.50.243")
-
+# set_property(GLOBAL APPEND PROPERTY BOARD_RUNNER_ARGS_EXPLICIT_jlink "-device STM32H743XI?BankAddr=0x90000000&Loader=CLK@PF10_nCS@PG6_D0@PF8_D1@PF9_D2@PF7_D3@PF6")
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 
-project(template LANGUAGES C)
-target_sources(app PRIVATE ${CMAKE_SOURCE_DIR}/src/main.c)
+project(98-cpp LANGUAGES CXX)
+
+FILE(GLOB app_sources src/*.c src/*.cpp)
+target_sources(app PRIVATE ${app_sources})
+
+# Run ext_code from the external flash (XIP). No need to copy.
+zephyr_code_relocate(FILES $<TARGET_PROPERTY:app,SOURCES> LOCATION SDRAM1_DATA_BSS)
+zephyr_code_relocate(FILES $<TARGET_PROPERTY:app,SOURCES> LOCATION EXTFLASH_TEXT_RODATA NOCOPY)
+
+
+target_include_directories(app PRIVATE ${CMAKE_SOURCE_DIR}/include)
 
 # The code below locates the git index file for this repository and adds it as a dependency for
 # the application VERSION file so that if the repo has a new commit added, even if no files in
