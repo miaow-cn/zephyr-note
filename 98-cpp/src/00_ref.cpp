@@ -1,5 +1,4 @@
 #include <zephyr/logging/log.h>
-#include <zephyr/logging/log_ctrl.h>
 #include <iostream>
 #include <00_ref.hpp>
 
@@ -14,7 +13,6 @@ static void increment(int& value)
 int ref_entry()
 {
     LOG_INF("Starting Reference example...");
-    log_flush();
 
     int a = 5;
     int b = 9;

@@ -12,10 +12,10 @@ project(98-cpp LANGUAGES CXX)
 FILE(GLOB app_sources src/*.c src/*.cpp)
 target_sources(app PRIVATE ${app_sources})
 
-# Run ext_code from the external flash (XIP). No need to copy.
+# Relocate app code/rodata to external flash (XIP, no copy).
+# External flash memory-mapped setup is handled by Zephyr when CONFIG_STM32_MEMMAP=y.
 zephyr_code_relocate(FILES $<TARGET_PROPERTY:app,SOURCES> LOCATION SDRAM1_DATA_BSS)
 zephyr_code_relocate(FILES $<TARGET_PROPERTY:app,SOURCES> LOCATION EXTFLASH_TEXT_RODATA NOCOPY)
-
 
 target_include_directories(app PRIVATE ${CMAKE_SOURCE_DIR}/include)
 
