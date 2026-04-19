@@ -2,7 +2,7 @@
 #include <iostream>
 #include <00_ref.hpp>
 
-LOG_MODULE_REGISTER(00_ref, LOG_LEVEL_INF);
+LOG_MODULE_REGISTER(ref, LOG_LEVEL_INF);
 
 static void increment(int& value)
 {
