@@ -4,11 +4,13 @@ cmake_minimum_required(VERSION 3.20.0)
 set(BOARD fk743m5_xih6)
 set(BOARD_FLASH_RUNNER jlink)
 set(BOARD_DEBUG_RUNNER jlink)
-# set_property(GLOBAL APPEND PROPERTY BOARD_RUNNER_ARGS_EXPLICIT_jlink "-O=-noUpdate")
-
+set(BOARD_RUNNER_ARGS_jlink
+    "--loader=BankAddr=0x90000000&Loader=CLK@PF10_nCS@PG6_D0@PF8_D1@PF9_D2@PF7_D3@PF6"
+    CACHE STRING "Extra J-Link runner args" FORCE)
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
+find_package(Python3 REQUIRED COMPONENTS Interpreter)
 
-project(template LANGUAGES C)
+project(devicetree LANGUAGES C)
 target_sources(app PRIVATE ${CMAKE_SOURCE_DIR}/src/main.c)
 
 # The code below locates the git index file for this repository and adds it as a dependency for
@@ -36,16 +38,44 @@ if(GIT_FOUND)
   endif()
 endif()
 
-# update build symlink for vscode
-add_custom_command(
-    TARGET app
-    POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E make_directory
-    ${ZEPHYR_BASE}/../.vscode
-  COMMAND ${CMAKE_COMMAND} -E rm -f
-    ${ZEPHYR_BASE}/../.vscode/build
-  COMMAND ${CMAKE_COMMAND} -E create_symlink
-    ${CMAKE_BINARY_DIR}
-    ${ZEPHYR_BASE}/../.vscode/build
-  COMMENT "Update build symlink"
-)
+# Update VS Code debug settings via workspace setup script.
+# Run this after final zephyr.elf is linked (not after app library build).
+set(VSCODE_SETUP_SCRIPT ${ZEPHYR_BASE}/../.vscode/setup.py)
+if(EXISTS ${VSCODE_SETUP_SCRIPT})
+  get_filename_component(VSCODE_ARM_TOOLCHAIN_PATH ${CMAKE_GDB} DIRECTORY)
+
+  set(VSCODE_JLINK_DEVICE "")
+  set(VSCODE_JLINK_LOADER "")
+  get_property(VSCODE_JLINK_ARGS GLOBAL PROPERTY BOARD_RUNNER_ARGS_jlink)
+
+  foreach(arg IN LISTS VSCODE_JLINK_ARGS)
+    if(arg MATCHES "^--device=(.*)$")
+      set(VSCODE_JLINK_DEVICE ${CMAKE_MATCH_1})
+    elseif(arg MATCHES "^--loader=(.*)$")
+      set(VSCODE_JLINK_LOADER ${CMAKE_MATCH_1})
+    endif()
+  endforeach()
+
+  if(VSCODE_JLINK_LOADER)
+    set(VSCODE_JLINK_DEVICE_FULL "${VSCODE_JLINK_DEVICE}?${VSCODE_JLINK_LOADER}")
+  else()
+    set(VSCODE_JLINK_DEVICE_FULL ${VSCODE_JLINK_DEVICE})
+  endif()
+
+  set(VSCODE_SETUP_STAMP ${CMAKE_BINARY_DIR}/.vscode_setup.stamp)
+  add_custom_command(
+    OUTPUT ${VSCODE_SETUP_STAMP}
+    COMMAND ${Python3_EXECUTABLE} ${VSCODE_SETUP_SCRIPT}
+      --app-path ${CMAKE_CURRENT_SOURCE_DIR}
+      --build-path ${CMAKE_BINARY_DIR}
+      --toolchain-path ${VSCODE_ARM_TOOLCHAIN_PATH}
+      --gdb-path ${CMAKE_GDB}
+      --device ${VSCODE_JLINK_DEVICE_FULL}
+      --launch-json ${ZEPHYR_BASE}/../.vscode/launch.json
+    COMMAND ${CMAKE_COMMAND} -E touch ${VSCODE_SETUP_STAMP}
+    DEPENDS ${CMAKE_BINARY_DIR}/zephyr/zephyr.elf ${VSCODE_SETUP_SCRIPT}
+    COMMENT "Run .vscode/setup.py to update launch.json and build symlink"
+    VERBATIM
+  )
+  add_custom_target(vscode_setup_symlink ALL DEPENDS ${VSCODE_SETUP_STAMP})
+endif()
