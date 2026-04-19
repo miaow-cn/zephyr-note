@@ -36,12 +36,16 @@ if(GIT_FOUND)
   endif()
 endif()
 
-# copy compile_commands.json for vscode
+# update build symlink for vscode
 add_custom_command(
     TARGET app
     POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        ${CMAKE_BINARY_DIR}/compile_commands.json
-        ${ZEPHYR_BASE}/../.vscode/compile_commands.json
-    COMMENT "Copy compile_commands.json for vscode"
+  COMMAND ${CMAKE_COMMAND} -E make_directory
+    ${ZEPHYR_BASE}/../.vscode
+  COMMAND ${CMAKE_COMMAND} -E rm -f
+    ${ZEPHYR_BASE}/../.vscode/build
+  COMMAND ${CMAKE_COMMAND} -E create_symlink
+    ${CMAKE_BINARY_DIR}
+    ${ZEPHYR_BASE}/../.vscode/build
+  COMMENT "Update build symlink"
 )
