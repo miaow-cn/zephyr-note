@@ -1,0 +1,5 @@
+#include <zephyr/dt-bindings/memory-attr/memory-attr-arm.h>
+
+&ext_memory {
+	zephyr,memory-attr = <DT_MEM_ARM(ATTR_MPU_FLASH)>;
+};
