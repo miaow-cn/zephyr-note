@@ -4,7 +4,11 @@ cmake_minimum_required(VERSION 3.20.0)
 set(BOARD fk743m5_xih6)
 set(BOARD_FLASH_RUNNER jlink)
 set(BOARD_DEBUG_RUNNER jlink)
-# set_property(GLOBAL APPEND PROPERTY BOARD_RUNNER_ARGS_EXPLICIT_jlink "-device STM32H743XI?BankAddr=0x90000000&Loader=CLK@PF10_nCS@PG6_D0@PF8_D1@PF9_D2@PF7_D3@PF6")
+# Keep board-provided --device and append J-Link external flash loader details.
+# Cache-provided BOARD_RUNNER_ARGS_jlink has highest precedence in Zephyr.
+set(BOARD_RUNNER_ARGS_jlink
+    "--loader=BankAddr=0x90000000&Loader=CLK@PF10_nCS@PG6_D0@PF8_D1@PF9_D2@PF7_D3@PF6"
+    CACHE STRING "Extra J-Link runner args" FORCE)
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 
 project(98-cpp LANGUAGES CXX)
