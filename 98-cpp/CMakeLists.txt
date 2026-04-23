@@ -15,6 +15,9 @@ project(cpp LANGUAGES CXX)
 FILE(GLOB app_sources src/*.c src/*.cpp)
 target_sources(app PRIVATE ${app_sources})
 
+# Keep build logs clean: suppress GCC psABI compatibility notes (e.g. from std::format).
+target_compile_options(app PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-Wno-psabi>)
+
 # Relocate app code/rodata to external flash (XIP, no copy).
 # External flash memory-mapped setup is handled by Zephyr when CONFIG_STM32_MEMMAP=y.
 # zephyr_code_relocate(FILES $<TARGET_PROPERTY:app,SOURCES> LOCATION SDRAM1_BSS_NOINIT_DATA)
