@@ -17,7 +17,7 @@ target_sources(app PRIVATE ${app_sources})
 
 # Relocate app code/rodata to external flash (XIP, no copy).
 # External flash memory-mapped setup is handled by Zephyr when CONFIG_STM32_MEMMAP=y.
-zephyr_code_relocate(FILES $<TARGET_PROPERTY:app,SOURCES> LOCATION SDRAM1_NOINIT)
+# zephyr_code_relocate(FILES $<TARGET_PROPERTY:app,SOURCES> LOCATION SDRAM1_BSS_NOINIT_DATA)
 zephyr_code_relocate(FILES $<TARGET_PROPERTY:app,SOURCES> LOCATION EXTFLASH_TEXT_RODATA NOCOPY)
 
 target_include_directories(app PRIVATE ${CMAKE_SOURCE_DIR}/include)
