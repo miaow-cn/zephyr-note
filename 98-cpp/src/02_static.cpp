@@ -5,6 +5,9 @@
 
 LOG_MODULE_REGISTER(static, LOG_LEVEL_INF);
 
+namespace _02_static
+{
+
 class Entity
 {
     static int x, y;
@@ -28,7 +31,7 @@ public:
 int Entity::x = 1;
 int Entity::y = 1;
 
-int static_entry()
+int entry()
 {
     LOG_INF("Starting Static example...");
 
@@ -38,4 +41,6 @@ int static_entry()
     e1.do_non_static();
 
     return 0;
+}
+
 }

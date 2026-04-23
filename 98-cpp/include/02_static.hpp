@@ -1,6 +1,9 @@
 #ifndef STATIC_HPP
 #define STATIC_HPP
 
-int static_entry(void);
+namespace _02_static
+{
+int entry(void);
+}
 
 #endif /* STATIC_HPP */

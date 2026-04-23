@@ -3,6 +3,8 @@
 
 #include <string>
 
+namespace _01_class
+{
 class Log
 {
 public:
@@ -24,6 +26,8 @@ private:
 	LogLevel m_level = LogLevel::Info;
 };
 
-int class_entry(void);
+int entry(void);
+
+}
 
 #endif /* CLASS_HPP */

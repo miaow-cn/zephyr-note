@@ -4,16 +4,17 @@
 #include <00_ref.hpp>
 #include <01_class.hpp>
 #include <02_static.hpp>
+#include <03_constructor.hpp>
 
 LOG_MODULE_REGISTER(98_cpp, LOG_LEVEL_INF);
 
-
 int main()
 {
-    LOG_INF("Starting C++ examples...");
-    ref_entry();
-    class_entry();
-    static_entry();
+	LOG_INF("Starting C++ examples...");
+	ref_entry();
+	_01_class::entry();
+	_02_static::entry();
+	_03_constructor::entry();
 
-    return 0;
+	return 0;
 }
