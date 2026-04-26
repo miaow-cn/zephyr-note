@@ -3,7 +3,7 @@
 
 namespace _02_static
 {
-int entry(void);
+int Entry(void);
 }
 
 #endif /* STATIC_HPP */

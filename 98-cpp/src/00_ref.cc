@@ -1,6 +1,6 @@
+#include "00_ref.h"
 #include <zephyr/logging/log.h>
 #include <iostream>
-#include <00_ref.hpp>
 
 LOG_MODULE_REGISTER(ref, LOG_LEVEL_INF);
 

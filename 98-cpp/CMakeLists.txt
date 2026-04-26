@@ -12,7 +12,7 @@ find_package(Python3 REQUIRED COMPONENTS Interpreter)
 
 project(cpp LANGUAGES CXX)
 
-FILE(GLOB app_sources src/*.c src/*.cpp)
+FILE(GLOB app_sources src/*.c src/*.cc)
 target_sources(app PRIVATE ${app_sources})
 
 # Keep build logs clean: suppress GCC psABI compatibility notes (e.g. from std::format).

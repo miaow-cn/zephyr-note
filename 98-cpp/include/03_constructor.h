@@ -3,7 +3,7 @@
 
 namespace _03_constructor
 {
-int entry(void);
+int Entry(void);
 }
 
 #endif /* CONSTRUCTOR_HPP */

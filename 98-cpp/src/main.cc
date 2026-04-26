@@ -1,0 +1,22 @@
+#include "00_ref.h"
+#include "01_class.h"
+#include "02_static.h"
+#include "03_constructor.h"
+#include "04_destructor.h"
+#include <zephyr/kernel.h>
+#include <zephyr/logging/log.h>
+#include <iostream>
+
+LOG_MODULE_REGISTER(98_cpp, LOG_LEVEL_INF);
+
+int main()
+{
+	LOG_INF("Starting C++ examples...");
+	ref_entry();
+	_01_class::Entry();
+	_02_static::Entry();
+	_03_constructor::Entry();
+	_04_destructor::Entry();
+
+	return 0;
+}

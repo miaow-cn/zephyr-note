@@ -3,7 +3,7 @@
 
 namespace _04_destructor
 {
-int entry(void);
+int Entry(void);
 }
 
 #endif /* DESTRUCTOR_HPP */
