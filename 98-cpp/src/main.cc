@@ -5,6 +5,7 @@
 #include "04_destructor.h"
 #include "05_inherit.h"
 #include "06_virtual.h"
+#include "07_pure_virtual.h"
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 #include <iostream>
@@ -22,6 +23,7 @@ int main()
 	_04_destructor::Entry();
 	_05_inherit::Entry();
 	_06_virtual::Entry();
+	_07_pure_virtual::Entry();
 
 	return 0;
 }
