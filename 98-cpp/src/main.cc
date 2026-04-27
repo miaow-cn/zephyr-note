@@ -6,6 +6,7 @@
 #include "05_inherit.h"
 #include "06_virtual.h"
 #include "07_pure_virtual.h"
+#include "08_create_object.h"
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 #include <iostream>
@@ -24,6 +25,7 @@ int main()
 	_05_inherit::Entry();
 	_06_virtual::Entry();
 	_07_pure_virtual::Entry();
+	_08_create_object::Entry();
 
 	return 0;
 }
