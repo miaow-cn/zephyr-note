@@ -9,6 +9,7 @@
 #include "08_create_object.h"
 #include "09_explicit_conversion.h"
 #include "10_operator_overload.h"
+#include "11_this.h"
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 #include <iostream>
@@ -30,6 +31,7 @@ int main()
 	_08_create_object::Entry();
 	_09_explicit_conversion::Entry();
 	_10_operator_overload::Entry();
+	_11_this::Entry();
 
 	return 0;
 }
