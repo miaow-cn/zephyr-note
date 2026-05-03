@@ -3,7 +3,6 @@
 #include <iostream>
 
 LOG_MODULE_REGISTER(copy_constructor_example, LOG_LEVEL_INF);
-using SourceLocation = std::source_location;
 
 namespace _13_copy_constructor
 {
