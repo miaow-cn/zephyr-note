@@ -7,6 +7,7 @@
 #include "06_virtual.h"
 #include "07_pure_virtual.h"
 #include "08_create_object.h"
+#include "09_explicit_conversion.h"
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 #include <iostream>
@@ -26,6 +27,7 @@ int main()
 	_06_virtual::Entry();
 	_07_pure_virtual::Entry();
 	_08_create_object::Entry();
+	_09_explicit_conversion::Entry();
 
 	return 0;
 }
