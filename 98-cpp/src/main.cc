@@ -12,6 +12,7 @@
 #include "11_this.h"
 #include "12_smart_pointer.h"
 #include "13_copy_constructor.h"
+#include "14_arrow_operator.h"
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 #include <iostream>
@@ -36,6 +37,7 @@ int main()
 	_11_this::Entry();
 	_12_smart_pointer::Entry();
 	_13_copy_constructor::Entry();
+	_14_arrow_operator::Entry();
 
 	return 0;
 }
