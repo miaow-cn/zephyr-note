@@ -8,6 +8,7 @@
 #include "07_pure_virtual.h"
 #include "08_create_object.h"
 #include "09_explicit_conversion.h"
+#include "10_operator_overload.h"
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 #include <iostream>
@@ -28,6 +29,7 @@ int main()
 	_07_pure_virtual::Entry();
 	_08_create_object::Entry();
 	_09_explicit_conversion::Entry();
+	_10_operator_overload::Entry();
 
 	return 0;
 }
