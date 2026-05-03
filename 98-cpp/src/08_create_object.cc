@@ -98,6 +98,7 @@ int Entry()
 	charlie->~Person();
 	::operator delete(raw);
 
+	std::cout << std::endl;
 	return 0;
 }
 

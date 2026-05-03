@@ -50,6 +50,7 @@ int Entry()
 	log.Info("This is an info message");
 	log.Warn("This is a warning message");
 	log.Error("This is an error message");
+	std::cout << std::endl;
 	return 0;
 }
 

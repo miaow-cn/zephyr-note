@@ -38,6 +38,7 @@ int Entry()
 	LOG_INF("Starting Destructor example...");
 	Entity entity0;
 	Entity entity1(1.0f, 2.0f);
+	std::cout << std::endl;
 	return 0;
 }
 

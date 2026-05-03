@@ -64,6 +64,7 @@ int Entry()
 	player->PrintName();
 
 	delete player;
+	std::cout << std::endl;
 	return 0;
 }
 

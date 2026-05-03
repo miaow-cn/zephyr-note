@@ -36,6 +36,7 @@ int Entry()
 	LOG_INF("Starting Constructor example...");
 	Entity entity0(1.0f);
 	Entity entity2(1.0f, 2.0f);
+	std::cout << std::endl;
 	return 0;
 }
 

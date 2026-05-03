@@ -40,6 +40,7 @@ int Entry()
     entity.DoNonStatic();
     entity1.DoNonStatic();
 
+    std::cout << std::endl;
     return 0;
 }
 

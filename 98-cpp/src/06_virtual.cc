@@ -66,6 +66,7 @@ int Entry()
 	entity->PrintName(); // PrintName is not virtual, so it will call Entity::PrintName()
 
 	delete player;
+	std::cout << std::endl;
 	return 0;
 }
 

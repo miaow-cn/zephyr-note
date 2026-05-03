@@ -50,6 +50,7 @@ int Entry()
 	Player player;
 	player.Print();
 	player.PrintName();
+	std::cout << std::endl;
 	return 0;
 }
 

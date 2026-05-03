@@ -24,5 +24,6 @@ int ref_entry()
 
     std::cout << "Value of a: " << a << std::endl;
     std::cout << "Value of ref: " << ref << std::endl;
+    std::cout << std::endl;
     return 0;
 }
